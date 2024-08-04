@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table {
+        background-color: azure;
+        width: auto;
+        height:fit-content;
+        margin: 20px 0;
+    }
+    th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+</style>
+<body>
+    <h1>MY TODO</h1>
+    <ui>
+
+       
+    <table border="1">
+        <tr>
+            <th>TITLE </th>
+            <th>DESCRIPTION</th>
+            <th>COMPLETED</th>
+            <th>EDIT</th>
+            <th>DELETE</th>
+        </tr>
+      
+        {% for todo in todos %}
+        <tr>
+            <td>{{ todo.title }}</td>
+            <td> {{ todo.description }}</td>
+            <td>  {{ todo.completed|yesno:"Completed,Not Completed" }}</td>
+            <td><a href="{% url 'update_todo' todo.id %}">EDIT</a></td>
+            <td><a href="{% url 'delete_todo' todo.id %}">DELETE</a></td>
+        </tr>
+        {% endfor %}
+        
+    </table>
+
+    <a href="{% url 'add_todo' %}">ADD YOUR WORK</a>
+
+
+    
+
+</body>
+</html>
